@@ -1,7 +1,7 @@
 {
     "name": "Columbia Grad Login",
     "short_name": "Columbia Login",
-    "version": "1.0",
+    "version": "1.1",
     "author": "John Schlachtenhaufen",
     "description": "Automatically logs you into Columbia grad portal SSO when accessing Columbia pages",
     "permissions": ["storage", "declarativeContent"],
