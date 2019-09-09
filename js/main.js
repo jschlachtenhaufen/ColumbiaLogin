@@ -1,12 +1,12 @@
-chrome.storage.sync.get(['canvasUNI', 'canvasPassword'], function(data) {
+chrome.storage.sync.get(['canvasUNI', 'canvasPassword', 'pause'], function(data) {
     if (data.pause || isError())
         return;
-    
+
     username = data.canvasUNI
     password = data.canvasPassword;
 
-    let userInputIds = ['username'];
-    let passwordInputIds = ['password'];
+    let userInputIds = ['username', 'txtLoginUsername'];
+    let passwordInputIds = ['password', 'txtLoginPassword'];
     let userInput, passwordInput;
 
     for (let i=0; i<userInputIds.length; i++) {
@@ -26,8 +26,13 @@ chrome.storage.sync.get(['canvasUNI', 'canvasPassword'], function(data) {
     }
 
     if ((userInput && userInput.value) || (passwordInput && passwordInput.value)) {
-        let form = document.getElementsByTagName('FORM')[0]
-        document.createElement('form').submit.call(form);
+        if (window.location.hostname === "candidate.gradleaders.com") {
+            let button = document.getElementById('ctl00_ContentPlaceHolder2_btnlogin');
+            button.click();
+        } else {
+            let form = document.getElementsByTagName('FORM')[0];
+            document.createElement('form').submit.call(form);
+        }
     }
 });
 
